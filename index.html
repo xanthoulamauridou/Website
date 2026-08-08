@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Xanthoula Mavridou — Painter</title>
+<meta name="description" content="Xanthoula Mavridou — oil paintings, ink drawings and mixed media exploring perception, memory and the uncanny. Studying Bildende Kunst at Alanus Hochschule für Kunst und Gesellschaft.">
+<meta property="og:title" content="Xanthoula Mavridou — Painter">
+<meta property="og:description" content="Oil paintings, ink drawings and mixed media exploring perception, memory and the uncanny.">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%2316130f'/%3E%3Ctext x='50' y='67' font-family='Georgia,serif' font-size='50' fill='%23ece7de' text-anchor='middle'%3EX%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Fraunces:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
+<style>
+/* ===================== RESET ===================== */
+*,*::before,*::after{box-sizing:border-box}
+*{margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:90px}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;background:none;border:none;cursor:pointer;-webkit-tap-highlight-color:transparent}
+ul{list-style:none}
+h1,h2,h3{font-weight:400}
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation-duration:.01ms !important;animation-iteration-count:1 !important;transition-duration:.01ms !important;scroll-behavior:auto !important}
+}
+
+/* ===================== TOKENS ===================== */
+:root{
+  --ink:#16130f;
+  --ink-2:#1f1a15;
+  --wall:#ece7de;
+  --paper:#f8f5ef;
+  --oxblood:#7a1620;
+  --oxblood-2:#d97c84;
+  --graphite:#6e655c;
+  --bone:#ddd4c8;
+  --bone-dim:#a89f92;
+  --line:rgba(22,19,15,.14);
+  --line-dark:rgba(221,212,200,.16);
+  --container:1200px;
+  --sp-4:2.5rem;--sp-5:4rem;--sp-6:6rem;--sp-7:8.5rem;
+  --ff-display:'Fraunces',Georgia,'Times New Roman',serif;
+  --ff-body:'Archivo','Helvetica Neue',Arial,sans-serif;
+}
+
+/* ===================== BASE ===================== */
+body{
+  font-family:var(--ff-body);
+  background:var(--wall);
+  color:var(--ink);
+  font-size:16px;
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  overflow-x:hidden;
+}
+.container{max-width:var(--container);margin:0 auto;padding:0 clamp(1.25rem,4vw,3rem)}
+.container.narrow{max-width:740px}
+.eyebrow{font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--oxblood);font-weight:600;margin-bottom:.9rem}
+.section-title{font-family:var(--ff-display);font-weight:400;font-size:clamp(1.7rem,3.4vw,2.4rem);line-height:1.18;margin-bottom:2.75rem;max-width:18ch}
+.section{padding:var(--sp-7) 0;position:relative}
+.section--tint{background:var(--paper)}
+
+/* reveal-on-scroll */
+.reveal{opacity:0;transform:translateY(20px);transition:opacity .8s cubic-bezier(.2,.7,.2,1),transform .8s cubic-bezier(.2,.7,.2,1)}
+.reveal.in{opacity:1;transform:translateY(0)}
+
+/* ===================== NAV ===================== */
+.nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:1.1rem clamp(1.25rem,4vw,3rem);
+  background:rgba(22,19,15,.82);
+  backdrop-filter:blur(10px);
+  -webkit-backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--line-dark);
+  color:var(--bone);
+}
+.nav-mark{font-family:var(--ff-display);font-style:italic;font-size:1.25rem;letter-spacing:.02em}
+.nav-links{display:flex;align-items:center;gap:2.1rem}
+.nav-links a{font-size:.82rem;letter-spacing:.04em;text-transform:uppercase;position:relative;padding:.2rem 0}
+.nav-links a:not(.nav-cta)::after{content:"";position:absolute;left:0;right:100%;bottom:-3px;height:1px;background:var(--oxblood-2);transition:right .3s ease}
+.nav-links a:not(.nav-cta):hover::after{right:0}
+.nav-cta{border:1px solid var(--line-dark);padding:.5rem 1rem !important;border-radius:2px;transition:background .3s,border-color .3s}
+.nav-cta:hover{background:var(--oxblood);border-color:var(--oxblood)}
+.nav-toggle{display:none;flex-direction:column;gap:5px;width:24px;padding:.4rem}
+.nav-toggle span{display:block;height:1.5px;background:var(--bone);width:100%;transition:transform .3s ease,opacity .3s ease}
+.nav-toggle.open span:first-child{transform:translateY(6.5px) rotate(45deg)}
+.nav-toggle.open span:last-child{transform:translateY(-6.5px) rotate(-45deg)}
+
+@media (max-width:760px){
+  .nav-toggle{display:flex}
+  .nav-links{
+    position:fixed;top:0;right:0;bottom:0;width:min(76vw,320px);
+    background:var(--ink);flex-direction:column;align-items:flex-start;justify-content:center;gap:2rem;
+    padding:2rem clamp(1.5rem,6vw,3rem);
+    transform:translateX(100%);transition:transform .45s cubic-bezier(.2,.8,.2,1);
+    border-left:1px solid var(--line-dark);
+  }
+  .nav-links.open{transform:translateX(0)}
+  .nav-links a{font-size:1rem}
+}
+
+/* ===================== HERO ===================== */
+.hero{
+  min-height:100vh;
+  position:relative;
+  overflow:hidden;
+  display:flex;
+  align-items:center;
+  color:var(--bone);
+  background:
+    radial-gradient(ellipse 55% 45% at 80% 28%, rgba(122,22,32,.4), transparent 62%),
+    radial-gradient(ellipse 70% 55% at 15% 92%, rgba(122,22,32,.14), transparent 60%),
+    linear-gradient(175deg,#181310 0%,#100d0a 100%);
+}
+.hero-figure{position:absolute;top:0;right:-6%;height:100%;width:56%;opacity:.65;filter:blur(38px);pointer-events:none}
+.hero-grain{position:absolute;inset:0;opacity:.05;mix-blend-mode:overlay;pointer-events:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+.hero-inner{position:relative;z-index:2;padding-top:6rem;padding-bottom:5rem}
+.hero .eyebrow{color:var(--oxblood-2)}
+.hero-name{font-family:var(--ff-display);font-weight:400;font-size:clamp(3rem,9vw,6.4rem);line-height:.98;letter-spacing:-.01em;margin-bottom:2.6rem}
+.hero-meta{display:flex;flex-wrap:wrap;gap:.6rem;align-items:center;font-size:.82rem;letter-spacing:.03em;color:var(--bone-dim)}
+.hero-meta .dot{opacity:.5}
+.hero .reveal:nth-of-type(1){transition-delay:.05s}
+.hero .reveal:nth-of-type(2){transition-delay:.16s}
+.hero .reveal:nth-of-type(3){transition-delay:.30s}
+.hero .reveal:nth-of-type(4){transition-delay:.44s}
+
+.scroll-cue{position:absolute;left:clamp(1.25rem,4vw,3rem);bottom:2.4rem;z-index:2;display:flex;align-items:center;gap:.7rem;font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--bone-dim)}
+.scroll-cue-line{width:1px;height:34px;background:linear-gradient(var(--bone-dim),transparent);position:relative;overflow:hidden}
+.scroll-cue-line::after{content:"";position:absolute;top:-100%;left:0;width:100%;height:100%;background:var(--oxblood-2);animation:cue 2.4s ease-in-out infinite}
+@keyframes cue{0%{top:-100%}60%{top:100%}100%{top:100%}}
+@media (prefers-reduced-motion:reduce){.scroll-cue-line::after{animation:none;top:0}}
+
+/* ===================== STATEMENT ===================== */
+.statement p{margin-bottom:1.3rem;max-width:64ch;line-height:1.75;color:var(--ink)}
+.statement p:last-child{margin-bottom:0}
+
+/* ===================== TIMELINE (education) ===================== */
+.timeline{position:relative}
+.timeline-item{display:grid;grid-template-columns:22px 1fr;gap:1.5rem;padding-bottom:3rem;position:relative}
+.timeline-item:last-child{padding-bottom:0}
+.timeline-mark{width:9px;height:9px;border-radius:50%;background:var(--oxblood);margin-top:.5rem;position:relative}
+.timeline-item:not(:last-child)::before{content:"";position:absolute;left:4px;top:1.1rem;bottom:0;width:1px;background:var(--line)}
+.timeline-date{font-size:.74rem;letter-spacing:.08em;text-transform:uppercase;color:var(--oxblood);font-weight:600;margin-bottom:.5rem}
+.timeline-body h3{font-family:var(--ff-display);font-size:clamp(1.25rem,2.4vw,1.55rem);margin-bottom:.4rem;font-weight:500}
+.timeline-body h3 span{font-weight:300;font-style:italic;color:var(--graphite)}
+.timeline-place{color:var(--ink);font-size:.94rem;margin-bottom:.7rem}
+.timeline-desc{color:var(--graphite);font-size:.92rem;line-height:1.7;max-width:58ch}
+
+/* ===================== EXHIBITIONS ===================== */
+.exhibition{max-width:640px}
+.exhibition h3{font-family:var(--ff-display);font-size:clamp(1.5rem,3vw,2rem);margin-bottom:.9rem;font-weight:500}
+.exhibition-meta{font-size:.88rem;color:var(--graphite);margin-bottom:.35rem;letter-spacing:.01em}
+.exhibition-desc{margin-top:1.2rem;color:var(--ink);line-height:1.7;max-width:46ch;font-size:.95rem}
+.exhibition-tag{display:inline-block;font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--oxblood);border:1px solid var(--oxblood);padding:.35rem .7rem;border-radius:2px;margin-bottom:1.2rem}
+
+/* ===================== WORK / GALLERY ===================== */
+.tabs{display:flex;flex-wrap:wrap;gap:.4rem 1.6rem;margin-bottom:var(--sp-6);border-bottom:1px solid var(--line);padding-bottom:1.1rem}
+.tab{font-size:.78rem;letter-spacing:.07em;text-transform:uppercase;color:var(--graphite);padding:.4rem 0;position:relative;transition:color .25s}
+.tab.active{color:var(--ink)}
+.tab.active::after{content:"";position:absolute;left:0;right:0;bottom:-1.15rem;height:2px;background:var(--oxblood)}
+.tab:hover{color:var(--ink)}
+
+.medium-group{margin-bottom:var(--sp-6)}
+.medium-group:last-child{margin-bottom:0}
+.medium-title{font-family:var(--ff-display);font-style:italic;font-weight:400;font-size:clamp(1.4rem,2.6vw,1.85rem);margin-bottom:2rem;padding-bottom:1rem;border-bottom:1px solid var(--line)}
+.subgroup{margin-bottom:var(--sp-5)}
+.subgroup:last-child{margin-bottom:0}
+.subgroup-label{font-size:.76rem;letter-spacing:.1em;text-transform:uppercase;color:var(--oxblood);font-weight:600;margin-bottom:.7rem}
+.subgroup-note{max-width:60ch;color:var(--graphite);font-size:.93rem;line-height:1.75;margin-bottom:2rem}
+
+.gallery{column-count:3;column-gap:2rem}
+@media (max-width:980px){.gallery{column-count:2}}
+@media (max-width:600px){.gallery{column-count:1}}
+.artwork{break-inside:avoid;margin-bottom:2rem;display:block}
+.artwork figcaption{padding-top:.75rem}
+.clip{color:var(--graphite);display:block;margin-bottom:.4rem}
+.t-title{display:block;font-family:var(--ff-display);font-style:italic;font-weight:400;font-size:1.05rem;color:var(--ink)}
+.t-meta{display:block;font-size:.74rem;letter-spacing:.02em;color:var(--graphite);margin-top:.15rem}
+
+.frame{position:relative;overflow:hidden;background-color:var(--paper);border:1px solid var(--line);
+  background-image:
+    repeating-linear-gradient(45deg, rgba(22,19,15,.035) 0, rgba(22,19,15,.035) 1px, transparent 1px, transparent 5px),
+    repeating-linear-gradient(-45deg, rgba(22,19,15,.035) 0, rgba(22,19,15,.035) 1px, transparent 1px, transparent 5px);
+}
+.frame:not(.loaded){min-height:260px}
+.frame img{display:block;width:100%;height:auto;opacity:0;transition:opacity .6s ease}
+.frame.loaded img{opacity:1}
+.frame.ph img{display:none}
+.frame.ph::after{
+  content:attr(data-title);
+  position:absolute;inset:0;display:flex;align-items:center;justify-content:center;text-align:center;padding:2.2rem;
+  font-family:var(--ff-display);font-style:italic;font-weight:400;font-size:1rem;color:rgba(22,19,15,.34);
+  transform:rotate(-1.1deg);line-height:1.4;
+}
+.frame.ph::before{
+  content:"Image coming soon";position:absolute;left:0;right:0;bottom:13px;text-align:center;
+  font-family:var(--ff-body);font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(22,19,15,.3);
+}
+
+.frame{cursor:zoom-in}
+.frame:focus-visible{outline:2px solid var(--oxblood);outline-offset:3px}
+.frame-hint{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;opacity:0;background:rgba(22,19,15,0);transition:opacity .3s ease,background .3s ease;pointer-events:none}
+.frame-hint svg{transform:scale(.82);transition:transform .3s cubic-bezier(.2,.8,.2,1)}
+.frame:hover .frame-hint{opacity:1;background:rgba(22,19,15,.16)}
+.frame:hover .frame-hint svg{transform:scale(1)}
+.frame:hover img{transform:scale(1.035)}
+.frame.loaded img{transition:opacity .6s ease,transform .5s cubic-bezier(.2,.8,.2,1)}
+@media (hover:none){
+  .frame-hint{opacity:1;inset:auto;bottom:10px;right:10px}
+  .frame-hint svg{transform:scale(.72);opacity:.9}
+}
+
+/* ===================== LIGHTBOX ===================== */
+.lightbox{position:fixed;inset:0;z-index:300;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:clamp(1rem,5vw,3rem);opacity:0;visibility:hidden;transition:opacity .4s ease,visibility 0s linear .4s}
+.lightbox.open{opacity:1;visibility:visible;transition:opacity .4s ease,visibility 0s linear 0s}
+.lightbox-backdrop{position:absolute;inset:0;background:rgba(13,11,9,.94);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
+.lightbox-close,.lightbox-nav{position:absolute;z-index:2;color:var(--bone);opacity:.7;transition:opacity .25s ease,transform .25s ease;padding:.6rem}
+.lightbox-close:hover,.lightbox-nav:hover{opacity:1}
+.lightbox-close{top:clamp(.75rem,3vw,2rem);right:clamp(.75rem,3vw,2rem)}
+.lightbox-nav{top:50%;transform:translateY(-50%)}
+.lightbox-nav:hover{transform:translateY(-50%) scale(1.08)}
+.lightbox-nav.prev{left:clamp(.25rem,2vw,1.5rem)}
+.lightbox-nav.next{right:clamp(.25rem,2vw,1.5rem)}
+.lightbox-stage{position:relative;z-index:1;max-width:min(88vw,980px);text-align:center;transform:scale(.94);opacity:0;transition:transform .45s cubic-bezier(.2,.8,.2,1),opacity .4s ease}
+.lightbox.open .lightbox-stage{transform:scale(1);opacity:1}
+.lightbox-stage img{max-width:min(88vw,980px);max-height:70vh;width:auto;height:auto;margin:0 auto;display:block;opacity:0;transition:opacity .45s ease}
+.lightbox-stage img.show{opacity:1}
+.lightbox-stage.ph{background-color:var(--paper);width:min(88vw,520px);aspect-ratio:4/5;display:flex;align-items:center;justify-content:center;position:relative;border:1px solid var(--line-dark);
+  background-image:repeating-linear-gradient(45deg, rgba(22,19,15,.035) 0, rgba(22,19,15,.035) 1px, transparent 1px, transparent 5px),repeating-linear-gradient(-45deg, rgba(22,19,15,.035) 0, rgba(22,19,15,.035) 1px, transparent 1px, transparent 5px);
+}
+.lightbox-stage.ph::after{content:attr(data-title);position:absolute;inset:0;display:flex;align-items:center;justify-content:center;text-align:center;padding:2.4rem;font-family:var(--ff-display);font-style:italic;font-size:1.1rem;color:rgba(22,19,15,.36);transform:rotate(-1.1deg);line-height:1.4}
+.lightbox-caption{margin-top:1.6rem}
+.lightbox-caption .t-title{color:var(--bone);font-size:1.2rem}
+.lightbox-caption .t-meta{color:var(--bone-dim);margin-top:.3rem}
+.lightbox-count{margin-top:.6rem;font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--bone-dim);opacity:.7}
+
+.feature{background:var(--paper);border:1px solid var(--line);padding:1.4rem}
+.feature-media{display:flex;flex-direction:column;gap:.85rem;margin-bottom:.9rem}
+.feature-text{font-size:.9rem;line-height:1.75;color:var(--ink);margin-top:.7rem;max-width:60ch}
+
+/* ===================== CONTACT / FOOTER ===================== */
+.footer{background:var(--ink);color:var(--bone);padding:var(--sp-7) 0 var(--sp-4);position:relative;overflow:hidden}
+.footer .eyebrow{color:var(--oxblood-2)}
+.footer-lead{font-family:var(--ff-display);font-style:italic;font-weight:400;font-size:clamp(1.9rem,5vw,3.2rem);line-height:1.2;max-width:15ch;margin-bottom:2.8rem}
+.contact-links{display:flex;flex-direction:column;gap:.7rem;margin-bottom:3rem}
+.contact-links a{font-family:var(--ff-display);font-size:clamp(1.25rem,3vw,1.8rem);border-bottom:1px solid var(--line-dark);padding-bottom:.35rem;display:inline-block;transition:color .25s,border-color .25s;width:fit-content}
+.contact-links a:hover{color:var(--oxblood-2);border-color:var(--oxblood-2)}
+.contact-note{color:var(--bone-dim);font-size:.86rem;max-width:44ch;line-height:1.6}
+.footer-bottom{display:flex;justify-content:space-between;flex-wrap:wrap;gap:1rem;padding-top:2.6rem;margin-top:3.2rem;border-top:1px solid var(--line-dark);font-size:.72rem;color:var(--bone-dim);letter-spacing:.03em}
+.footer-mark{font-family:var(--ff-display);font-style:italic;font-size:1.1rem;color:var(--bone)}
+
+/* focus visibility */
+a:focus-visible,button:focus-visible{outline:2px solid var(--oxblood-2);outline-offset:3px}
+</style>
+</head>
+<body>
+
+<nav class="nav" id="nav">
+  <a href="#top" class="nav-mark">XM</a>
+  <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
+    <span></span><span></span>
+  </button>
+  <div class="nav-links" id="navLinks">
+    <a href="#work">Work</a>
+    <a href="#about">Statement</a>
+    <a href="#education">Education</a>
+    <a href="#exhibitions">Exhibitions</a>
+    <a href="#contact" class="nav-cta">Contact</a>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <svg class="hero-figure" viewBox="0 0 600 800" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <defs>
+      <linearGradient id="figGrad" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#7A1620" stop-opacity=".55"/>
+        <stop offset="1" stop-color="#7A1620" stop-opacity="0"/>
+      </linearGradient>
+    </defs>
+    <path d="M300 40 C 385 105 425 195 435 300 C 468 365 528 425 505 530 C 480 655 375 735 300 758 C 225 735 120 655 95 530 C 72 425 132 365 165 300 C 175 195 215 105 300 40 Z" fill="url(#figGrad)"/>
+  </svg>
+  <div class="hero-grain"></div>
+  <div class="hero-inner container">
+    <p class="eyebrow reveal">Painter — Oil, Ink &amp; Mixed Media</p>
+    <h1 class="hero-name reveal">Xanthoula<br>Mavridou</h1>
+    <div class="hero-meta reveal">
+      <span>Bonn, Germany</span>
+      <span class="dot">·</span>
+      <span>BFA, Bildende Kunst — Alanus Hochschule für Kunst und Gesellschaft, 2026–2029</span>
+    </div>
+  </div>
+  <a href="#about" class="scroll-cue" aria-label="Scroll to artist statement">
+    <span class="scroll-cue-line"></span>
+    Scroll
+  </a>
+</header>
+
+<main>
+
+  <!-- ABOUT / STATEMENT -->
+  <section id="about" class="section" aria-labelledby="about-title">
+    <div class="container narrow">
+      <p class="eyebrow reveal">Artist Statement</p>
+      <h2 id="about-title" class="section-title reveal">On painting, perception &amp; the uncanny</h2>
+
+      <div class="statement reveal">
+        <p>Painting is my primary means of exploring the human experience and the mental processes that influence the way we perceive ourselves and the world around us. Through my work, I create imaginary, almost cinematic environments where the familiar coexists with the strange and unsettling. I am drawn to themes such as pleasure, confinement, escape, and fear—subjects that allow me to examine vulnerability, tension, and the fragility of perception.</p>
+        <p>My images often resemble dreams or hallucinations, existing in a space between reality and fiction. I use strong color contrasts and dramatic lighting to heighten emotional intensity and reinforce a sense of the uncanny. My compositions remain open to interpretation, giving the viewer room to explore personal readings.</p>
+        <p>Influenced by artists such as Luc Tuymans, Michaël Borremans, Francis Bacon, Marlene Dumas, and filmmaker David Lynch, I am particularly interested in the darker areas of the subconscious, the psychological weight carried by the human figure, and questioning the perception of reality. Through painting, I seek not only to depict states of mind but also to challenge perception and provoke introspection.</p>
+        <p>As a young artist, I view my practice as an ongoing process of experimentation and self-discovery. Studying art allows me to further develop my visual language, deepen my conceptual thinking, and expand my technical skills while continuing to explore the complexities of the human psyche.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- EDUCATION -->
+  <section id="education" class="section section--tint" aria-labelledby="edu-title">
+    <div class="container narrow">
+      <p class="eyebrow reveal">Education</p>
+      <h2 id="edu-title" class="section-title reveal">Formal study &amp; studio practice</h2>
+
+      <div class="timeline">
+        <div class="timeline-item reveal">
+          <div class="timeline-mark"></div>
+          <div class="timeline-body">
+            <p class="timeline-date">1 September 2026 – 2029</p>
+            <h3>Bildende Kunst <span>(Fine Art), BFA</span></h3>
+            <p class="timeline-place">Alanus Hochschule für Kunst und Gesellschaft — Alfter, near Bonn, Germany</p>
+            <p class="timeline-desc">Currently pursuing a university degree spanning painting, drawing, sculpture and time-based media — building on a practice already rooted in oil painting, ink and mixed media.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXHIBITIONS -->
+  <section id="exhibitions" class="section" aria-labelledby="exh-title">
+    <div class="container">
+      <p class="eyebrow reveal">Exhibitions</p>
+      <h2 id="exh-title" class="section-title reveal">Recent exhibition</h2>
+
+      
+      <div class="exhibition reveal">
+        <span class="exhibition-tag">Group Exhibition</span>
+        <h3>Athens</h3>
+        <p class="exhibition-meta">Art Number 23 · Michael Cacoyannis Foundation (MCF), Athens</p>
+        <p class="exhibition-meta">17 – 31 July 2026</p>
+        <p class="exhibition-desc">Paintings from the Perspective series were shown at MCF's Second Floor project space in Athens, alongside work by other emerging artists.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- WORK -->
+  <section id="work" class="section section--tint" aria-labelledby="work-title">
+    <div class="container">
+      <p class="eyebrow reveal">Selected Works</p>
+      <h2 id="work-title" class="section-title reveal">Paintings, drawings &amp; process</h2>
+
+      <div class="tabs reveal" role="tablist" aria-label="Filter works by medium"><button class="tab active" data-cat="all" role="tab" aria-selected="true">All</button><button class="tab" data-cat="oil" role="tab" aria-selected="false">Oil Paintings</button><button class="tab" data-cat="ink" role="tab" aria-selected="false">Ink Drawings</button><button class="tab" data-cat="mixed" role="tab" aria-selected="false">Mixed Media</button><button class="tab" data-cat="sketches" role="tab" aria-selected="false">Sketches</button></div>
+
+      <div class="medium-group reveal" data-group="oil"><h3 class="medium-title">Oil Paintings</h3><div class="subgroup"><p class="subgroup-label">Perspective Series</p><p class="subgroup-note">In this series I experimented with perspective and unusual viewpoints, using a more cinematic way of looking at the theme. By playing with framing and angle I explored mood, tension and atmosphere — an ongoing process where storytelling and feeling emerge through the act of painting.</p><div class="gallery"><figure class="artwork" data-cat="oil"><div class="frame" data-title="Statue"><img src="images/works/oil-statue.jpg" alt="A solitary red-toned nude figure standing in a crimson interior." loading="lazy"></div><figcaption><svg class="clip" width="16" height="13" viewBox="0 0 16 13" fill="none" aria-hidden="true"><rect x="1.5" y="1.5" width="13" height="4.5" rx="1" stroke="currentColor"/><path d="M4 6.5L2 12" stroke="currentColor" stroke-linecap="round"/><path d="M12 6.5L14 12" stroke="currentColor" stroke-linecap="round"/></svg>
+        <span class="t-title">Statue</span>
+        <span class="t-meta">Oil on canvas, 2025 · 50 × 70 cm</span></figcaption></figure>
+<figure class="artwork" data-cat="oil"><div class="frame" data-title="Enter"><img src="images/works/oil-enter.jpg" alt="A figure glimpsed through a doorway in a bright red corridor." loading="lazy"></div><figcaption><svg class="clip" width="16" height="13" viewBox="0 0 16 13" fill="none" aria-hidden="true"><rect x="1.5" y="1.5" width="13" height="4.5" rx="1" stroke="currentColor"/><path d="M4 6.5L2 12" stroke="currentColor" stroke-linecap="round"/><path d="M12 6.5L14 12" stroke="currentColor" stroke-linecap="round"/></svg>
+        <span class="t-title">Enter</span>
+        <span class="t-meta">Oil on canvas, 2025 · 30 × 41 cm</span></figcaption></figure>
+<figure class="artwork" data-cat="oil"><div class="frame" data-title="Stairs"><img src="images/works/oil-stairs.jpg" alt="A figure descending a stairwell seen from above." loading="lazy"></div><figcaption><svg class="clip" width="16" height="13" viewBox="0 0 16 13" fill="none" aria-hidden="true"><rect x="1.5" y="1.5" width="13" height="4.5" rx="1" stroke="currentColor"/><path d="M4 6.5L2 12" stroke="currentColor" stroke-linecap="round"/><path d="M12 6.5L14 12" stroke="currentColor" stroke-linecap="round"/></svg>
+        <span class="t-title">Stairs</span>
+        <span class="t-meta">Oil on canvas, 2025 · 42 × 30 cm</span></figcaption></figure>
+<figure class="artwork" data-cat="oil"><div class="frame" data-title="Living Room"><img src="images/works/oil-livingroom.jpg" alt="A domestic interior with a sofa and television." loading="lazy"></div><figcaption><svg class="clip" width="16" height="13" viewBox="0 0 16 13" fill="none" aria-hidden="true"><rect x="1.5" y="1.5" width="13" height="4.5" rx="1" stroke="currentColor"/><path d="M4 6.5L2 12" stroke="currentColor" stroke-linecap="round"/><path d="M12 6.5L14 12" stroke="currentColor" stroke-linecap="round"/></svg>
+        <span class="t-title">Living Room</span>
+        <span class="t-meta">Oil on canvas, 2025 · 42 × 30 cm</span></figcaption></figure></div></div>
+<div class="subgroup"><div class="gallery"><figure class="artwork" data-cat="oil"><div class="frame" data-title="Nullspace"><img src="images/works/oil-nullspace.jpg" alt="A red-bleeding street scene receding into a pale sky." loading="lazy"></div><figcaption><svg class="clip" width="16" height="13" viewBox="0 0 16 13" fill="none" aria-hidden="true"><rect x="1.5" y="1.5" width="13" height="4.5" rx="1" stroke="currentColor"/><path d="M4 6.5L2 12" stroke="currentColor" stroke-linecap="round"/><path d="M12 6.5L14 12" stroke="currentColor" stroke-linecap="round"/></svg>
+        <span class="t-title">Nullspace</span>
+        <span class="t-meta">Oil on canvas, 2025 · 70 × 100 cm</span></figcaption></figure>
+<figure class="artwork" data-cat="oil"><div class="frame" data-title="Coalecence"><img src="images/works/oil-coalecence.jpg" alt="Two pale embracing figures against a red ground." loading="lazy"></div><figcaption><svg class="clip" width="16" height="13" viewBox="0 0 16 13" fill="none" aria-hidden="true"><rect x="1.5" y="1.5" width="13" height="4.5" rx="1" stroke="currentColor"/><path d="M4 6.5L2 12" stroke="currentColor" stroke-linecap="round"/><path d="M12 6.5L14 12" stroke="currentColor" stroke-linecap="round"/></svg>
+        <span class="t-title">Coalecence</span>
+        <span class="t-meta">Oil on canvas, 2025 · 30 × 40 cm</span></figcaption></figure>
+<figure class="artwork" data-cat="oil"><div class="frame" data-title="Untitled"><img src="images/works/oil-untitled-shroud.jpg" alt="A shrouded, seated figure against black." loading="lazy"></div><figcaption><svg class="clip" width="16" height="13" viewBox="0 0 16 13" fill="none" aria-hidden="true"><rect x="1.5" y="1.5" width="13" height="4.5" rx="1" stroke="currentColor"/><path d="M4 6.5L2 12" stroke="currentColor" stroke-linecap="round"/><path d="M12 6.5L14 12" stroke="currentColor" stroke-linecap="round"/></svg>
+        <span class="t-title">Untitled</span>
+        <span class="t-meta">Oil on canvas, 2024 · 30 × 40 cm</span></figcaption></figure>
+<figure class="artwork" data-cat="oil"><div class="frame" data-title="Untitled"><img src="images/works/oil-untitled-sofa.jpg" alt="An empty sofa in a dark red room." loading="lazy"></div><figcaption><svg class="clip" width="16" height="13" viewBox="0 0 16 13" fill="none" aria-hidden="true"><rect x="1.5" y="1.5" width="13" height="4.5" rx="1" stroke="currentColor"/><path d="M4 6.5L2 12" stroke="currentColor" stroke-linecap="round"/><path d="M12 6.5L14 12" stroke="currentColor" stroke-linecap="round"/></svg>
+        <span class="t-title">Untitled</span>
+        <span class="t-meta">Oil on canvas, 2024 · 29 × 42 cm</span></figcaption></figure></div></div></div>
+<div class="medium-group reveal" data-group="ink"><h3 class="medium-title">Ink Drawings</h3><div class="subgroup"><div class="gallery"><figure class="artwork" data-cat="ink"><div class="frame" data-title="Untitled"><img src="images/works/ink-01.jpg" alt="A dissolved and bleeding ink portrait." loading="lazy"></div><figcaption><svg class="clip" width="16" height="13" viewBox="0 0 16 13" fill="none" aria-hidden="true"><rect x="1.5" y="1.5" width="13" height="4.5" rx="1" stroke="currentColor"/><path d="M4 6.5L2 12" stroke="currentColor" stroke-linecap="round"/><path d="M12 6.5L14 12" stroke="currentColor" stroke-linecap="round"/></svg>
+        <span class="t-title">Untitled</span>
+        <span class="t-meta">Ink on paper, 2025 · 20 × 29 cm</span></figcaption></figure>
+<figure class="artwork" data-cat="ink"><div class="frame" data-title="Untitled"><img src="images/works/ink-02.jpg" alt="A dissolved ink portrait." loading="lazy"></div><figcaption><svg class="clip" width="16" height="13" viewBox="0 0 16 13" fill="none" aria-hidden="true"><rect x="1.5" y="1.5" width="13" height="4.5" rx="1" stroke="currentColor"/><path d="M4 6.5L2 12" stroke="currentColor" stroke-linecap="round"/><path d="M12 6.5L14 12" stroke="currentColor" stroke-linecap="round"/></svg>
+        <span class="t-title">Untitled</span>
+        <span class="t-meta">Ink on paper, 2025 · 20 × 29 cm</span></figcaption></figure>
+<figure class="artwork" data-cat="ink"><div class="frame" data-title="Untitled"><img src="images/works/ink-03.jpg" alt="An abstracted face formed from ink blots." loading="lazy"></div><figcaption><svg class="clip" width="16" height="13" viewBox="0 0 16 13" fill="none" aria-hidden="true"><rect x="1.5" y="1.5" width="13" height="4.5" rx="1" stroke="currentColor"/><path d="M4 6.5L2 12" stroke="currentColor" stroke-linecap="round"/><path d="M12 6.5L14 12" stroke="currentColor" stroke-linecap="round"/></svg>
+        <span class="t-title">Untitled</span>
+        <span class="t-meta">Ink on paper, 2025 · 20 × 29 cm</span></figcaption></figure>
+<figure class="artwork" data-cat="ink"><div class="frame" data-title="Untitled"><img src="images/works/ink-04.jpg" alt="An ink figure study with an animal mask." loading="lazy"></div><figcaption><svg class="clip" width="16" height="13" viewBox="0 0 16 13" fill="none" aria-hidden="true"><rect x="1.5" y="1.5" width="13" height="4.5" rx="1" stroke="currentColor"/><path d="M4 6.5L2 12" stroke="currentColor" stroke-linecap="round"/><path d="M12 6.5L14 12" stroke="currentColor" stroke-linecap="round"/></svg>
+        <span class="t-title">Untitled</span>
+        <span class="t-meta">Ink on paper, 2025 · 20 × 29 cm</span></figcaption></figure>
+<figure class="artwork" data-cat="ink"><div class="frame" data-title="Untitled"><img src="images/works/ink-05.jpg" alt="A group of dark standing figures in ink." loading="lazy"></div><figcaption><svg class="clip" width="16" height="13" viewBox="0 0 16 13" fill="none" aria-hidden="true"><rect x="1.5" y="1.5" width="13" height="4.5" rx="1" stroke="currentColor"/><path d="M4 6.5L2 12" stroke="currentColor" stroke-linecap="round"/><path d="M12 6.5L14 12" stroke="currentColor" stroke-linecap="round"/></svg>
+        <span class="t-title">Untitled</span>
+        <span class="t-meta">Ink on paper, 2025 · 20 × 29 cm</span></figcaption></figure>
+<figure class="artwork" data-cat="ink"><div class="frame" data-title="Untitled"><img src="images/works/ink-06.jpg" alt="An ink portrait on toned paper." loading="lazy"></div><figcaption><svg class="clip" width="16" height="13" viewBox="0 0 16 13" fill="none" aria-hidden="true"><rect x="1.5" y="1.5" width="13" height="4.5" rx="1" stroke="currentColor"/><path d="M4 6.5L2 12" stroke="currentColor" stroke-linecap="round"/><path d="M12 6.5L14 12" stroke="currentColor" stroke-linecap="round"/></svg>
+        <span class="t-title">Untitled</span>
+        <span class="t-meta">Ink on paper, 2025 · 15 × 21 cm</span></figcaption></figure></div></div></div>
+<div class="medium-group reveal" data-group="mixed"><h3 class="medium-title">Mixed Media</h3><div class="subgroup"><div class="gallery"><figure class="artwork" data-cat="mixed"><div class="frame" data-title="Untitled"><img src="images/works/mixed-01.jpg" alt="A mixed media bust portrait emerging from a dark ground." loading="lazy"></div><figcaption><svg class="clip" width="16" height="13" viewBox="0 0 16 13" fill="none" aria-hidden="true"><rect x="1.5" y="1.5" width="13" height="4.5" rx="1" stroke="currentColor"/><path d="M4 6.5L2 12" stroke="currentColor" stroke-linecap="round"/><path d="M12 6.5L14 12" stroke="currentColor" stroke-linecap="round"/></svg>
+        <span class="t-title">Untitled</span>
+        <span class="t-meta">Spray, ink &amp; acrylic, 2025 · 20 × 29 cm</span></figcaption></figure>
+<figure class="artwork" data-cat="mixed"><div class="frame" data-title="Untitled"><img src="images/works/mixed-02.jpg" alt="A mixed media abstract form." loading="lazy"></div><figcaption><svg class="clip" width="16" height="13" viewBox="0 0 16 13" fill="none" aria-hidden="true"><rect x="1.5" y="1.5" width="13" height="4.5" rx="1" stroke="currentColor"/><path d="M4 6.5L2 12" stroke="currentColor" stroke-linecap="round"/><path d="M12 6.5L14 12" stroke="currentColor" stroke-linecap="round"/></svg>
+        <span class="t-title">Untitled</span>
+        <span class="t-meta">Spray, ink &amp; acrylic, 2025 · 20 × 29 cm</span></figcaption></figure></div></div>
+<div class="subgroup"><p class="subgroup-label">Process &amp; Performance</p><div class="gallery"><figure class="artwork feature" data-cat="mixed"><div class="feature-media"><div class="frame" data-title="2nd Stalking"><img src="images/works/mixed-stalking-drawing.jpg" alt="Charcoal drawing of five standing nude figures, and a photograph documenting the drawing left in a public park." loading="lazy"></div><div class="frame" data-title="2nd Stalking"><img src="images/works/mixed-stalking-photo.jpg" alt="Charcoal drawing of five standing nude figures, and a photograph documenting the drawing left in a public park." loading="lazy"></div></div><figcaption><svg class="clip" width="16" height="13" viewBox="0 0 16 13" fill="none" aria-hidden="true"><rect x="1.5" y="1.5" width="13" height="4.5" rx="1" stroke="currentColor"/><path d="M4 6.5L2 12" stroke="currentColor" stroke-linecap="round"/><path d="M12 6.5L14 12" stroke="currentColor" stroke-linecap="round"/></svg>
+        <span class="t-title">2nd Stalking</span>
+        <span class="t-meta">Performance documentation, charcoal on paper · 19.05.2025 · 13:00 – 15:00</span>
+        <p class="feature-text">I placed a drawing in a public park and hid nearby for several hours, waiting to observe any interaction with passersby. After a long wait, someone finally stopped to look at the drawing. He took it, tore it apart, and threw it into the garbage. I felt excited watching this unfold, even though the outcome was not what I had anticipated.</p></figcaption></figure>
+<figure class="artwork feature" data-cat="mixed"><div class="frame" data-title="Quickness"><img src="images/works/mixed-quickness.jpg" alt="Grid of stop-motion animation frames showing a running paper figure." loading="lazy"></div><figcaption><svg class="clip" width="16" height="13" viewBox="0 0 16 13" fill="none" aria-hidden="true"><rect x="1.5" y="1.5" width="13" height="4.5" rx="1" stroke="currentColor"/><path d="M4 6.5L2 12" stroke="currentColor" stroke-linecap="round"/><path d="M12 6.5L14 12" stroke="currentColor" stroke-linecap="round"/></svg>
+        <span class="t-title">Quickness</span>
+        <span class="t-meta">Stop motion (GIF), paper, pencil, spray · 2025–2026, in progress</span>
+        <p class="feature-text">An ongoing project drawing on Italo Calvino's <em>Six Memos for the Next Millennium</em>. I am currently concluding the chapter on Quickness, exploring how each concept can be articulated through analog stop-motion and examining the workings of the medium itself — photographing each frame by cellphone and assembling the sequence into a GIF.</p></figcaption></figure></div></div></div>
+<div class="medium-group reveal" data-group="sketches"><h3 class="medium-title">Sketches</h3><div class="subgroup"><div class="gallery"><figure class="artwork feature" data-cat="sketches"><div class="frame" data-title="Sketching"><img src="images/works/sketches-grid.jpg" alt="Grid of nine figure studies and portraits in ink and charcoal, mostly from life-drawing sessions." loading="lazy"></div><figcaption><svg class="clip" width="16" height="13" viewBox="0 0 16 13" fill="none" aria-hidden="true"><rect x="1.5" y="1.5" width="13" height="4.5" rx="1" stroke="currentColor"/><path d="M4 6.5L2 12" stroke="currentColor" stroke-linecap="round"/><path d="M12 6.5L14 12" stroke="currentColor" stroke-linecap="round"/></svg>
+        <span class="t-title">Sketching</span>
+        <span class="t-meta">Ink &amp; charcoal, 2025</span>
+        <p class="feature-text">Quick studies from life-drawing sessions — a regular practice that runs alongside the larger finished paintings.</p></figcaption></figure></div></div></div>
+
+    </div>
+  </section>
+
+</main>
+
+<!-- CONTACT -->
+<footer class="footer" id="contact">
+  <div class="container">
+    <p class="eyebrow reveal">Contact</p>
+    <h2 class="footer-lead reveal">Available for exhibitions, studio visits &amp; collaboration.</h2>
+
+    <div class="contact-links reveal">
+      <a href="mailto:xanthoulamauridou57@gmail.com">xanthoulamauridou57@gmail.com</a>
+      <a href="tel:+4917670796088">+49 176 7079 6088</a>
+    </div>
+
+    <p class="contact-note reveal">Based in Greece and Germany.</p>
+
+    <div class="footer-bottom">
+      <span class="footer-mark">Xanthoula Mavridou</span>
+      <span>© 2026. All works shown remain the property of the artist.</span>
+    </div>
+  </div>
+</footer>
+
+<div class="lightbox" id="lightbox" aria-hidden="true">
+  <div class="lightbox-backdrop" id="lightboxBackdrop"></div>
+  <button class="lightbox-close" id="lightboxClose" aria-label="Close">
+    <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M3 3L19 19M19 3L3 19" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+  </button>
+  <button class="lightbox-nav prev" id="lightboxPrev" aria-label="Previous work">
+    <svg width="15" height="26" viewBox="0 0 15 26" fill="none"><path d="M13 2L3 13L13 24" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </button>
+  <button class="lightbox-nav next" id="lightboxNext" aria-label="Next work">
+    <svg width="15" height="26" viewBox="0 0 15 26" fill="none"><path d="M2 2L12 13L2 24" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </button>
+  <div class="lightbox-stage" id="lightboxStage">
+    <img id="lightboxImg" alt="">
+  </div>
+  <div class="lightbox-caption">
+    <span class="t-title" id="lightboxTitle"></span>
+    <span class="t-meta" id="lightboxMeta"></span>
+    <div class="lightbox-count" id="lightboxCount"></div>
+  </div>
+</div>
+
+<script>
+(function(){
+  // mobile nav
+  var navToggle = document.getElementById('navToggle');
+  var navLinks = document.getElementById('navLinks');
+  if(navToggle && navLinks){
+    navToggle.addEventListener('click', function(){
+      var open = navLinks.classList.toggle('open');
+      navToggle.classList.toggle('open', open);
+      navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+    navLinks.querySelectorAll('a').forEach(function(a){
+      a.addEventListener('click', function(){
+        navLinks.classList.remove('open');
+        navToggle.setAttribute('aria-expanded','false');
+      });
+    });
+  }
+
+  // tabs filter (toggles whole medium-group blocks)
+  var tabs = document.querySelectorAll('.tab');
+  var groups = document.querySelectorAll('.medium-group');
+  tabs.forEach(function(tab){
+    tab.addEventListener('click', function(){
+      tabs.forEach(function(t){ t.classList.remove('active'); t.setAttribute('aria-selected','false'); });
+      tab.classList.add('active');
+      tab.setAttribute('aria-selected','true');
+      var cat = tab.getAttribute('data-cat');
+      groups.forEach(function(g){
+        var show = (cat === 'all' || g.getAttribute('data-group') === cat);
+        g.style.display = show ? '' : 'none';
+      });
+    });
+  });
+
+  // reveal on scroll
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var revealEls = document.querySelectorAll('.reveal');
+  if(!reduceMotion && 'IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if(entry.isIntersecting){
+          entry.target.classList.add('in');
+          io.unobserve(entry.target);
+        }
+      });
+    }, {threshold:0.12, rootMargin:'0px 0px -40px 0px'});
+    revealEls.forEach(function(el){ io.observe(el); });
+  } else {
+    revealEls.forEach(function(el){ el.classList.add('in'); });
+  }
+
+  // image load / missing-file handling for placeholder frames
+  document.querySelectorAll('.frame img').forEach(function(img){
+    var frame = img.parentElement;
+    function markLoaded(){ frame.classList.add('loaded'); frame.classList.remove('ph'); }
+    function markMissing(){ frame.classList.add('ph'); }
+    if(img.complete){
+      if(img.naturalWidth > 0){ markLoaded(); } else { markMissing(); }
+    }
+    img.addEventListener('load', function(){
+      if(img.naturalWidth > 0){ markLoaded(); } else { markMissing(); }
+    });
+    img.addEventListener('error', markMissing);
+  });
+
+  // ---- click-to-zoom lightbox ----
+  var hintSVG = '<svg width="34" height="34" viewBox="0 0 34 34" fill="none" aria-hidden="true">'
+    + '<circle cx="17" cy="17" r="17" fill="rgba(22,19,15,.55)"/>'
+    + '<circle cx="15" cy="15" r="6" stroke="#F8F5EF" stroke-width="1.4"/>'
+    + '<path d="M19.5 19.5L24 24" stroke="#F8F5EF" stroke-width="1.4" stroke-linecap="round"/>'
+    + '<path d="M15 12.5V17.5M12.5 15H17.5" stroke="#F8F5EF" stroke-width="1.2" stroke-linecap="round"/>'
+    + '</svg>';
+
+  var frames = Array.prototype.slice.call(document.querySelectorAll('.frame'));
+  frames.forEach(function(frame){
+    var hint = document.createElement('span');
+    hint.className = 'frame-hint';
+    hint.setAttribute('aria-hidden','true');
+    hint.innerHTML = hintSVG;
+    frame.appendChild(hint);
+    frame.setAttribute('tabindex','0');
+    frame.setAttribute('role','button');
+    frame.setAttribute('aria-label','View larger');
+  });
+
+  var lightbox = document.getElementById('lightbox');
+  var lbStage = document.getElementById('lightboxStage');
+  var lbImg = document.getElementById('lightboxImg');
+  var lbTitle = document.getElementById('lightboxTitle');
+  var lbMeta = document.getElementById('lightboxMeta');
+  var lbCount = document.getElementById('lightboxCount');
+  var lbClose = document.getElementById('lightboxClose');
+  var lbBackdrop = document.getElementById('lightboxBackdrop');
+  var lbPrev = document.getElementById('lightboxPrev');
+  var lbNext = document.getElementById('lightboxNext');
+  var lastFocused = null;
+  var currentIndex = -1;
+
+  function openAt(index){
+    if(!frames.length) return;
+    if(index < 0) index = frames.length - 1;
+    if(index >= frames.length) index = 0;
+    currentIndex = index;
+    var frame = frames[index];
+    var img = frame.querySelector('img');
+    var artwork = frame.closest('.artwork');
+    var metaEl = artwork ? artwork.querySelector('.t-meta') : null;
+    var title = frame.getAttribute('data-title') || '';
+
+    lbTitle.textContent = title;
+    lbMeta.textContent = metaEl ? metaEl.textContent : '';
+    lbCount.textContent = (index + 1) + ' / ' + frames.length;
+
+    lbImg.classList.remove('show');
+    if(frame.classList.contains('loaded') && img){
+      lbStage.classList.remove('ph');
+      lbStage.removeAttribute('data-title');
+      lbImg.alt = img.alt || title;
+      lbImg.onload = function(){ lbImg.classList.add('show'); };
+      lbImg.src = img.src;
+      if(lbImg.complete && lbImg.naturalWidth > 0){ lbImg.classList.add('show'); }
+    } else {
+      lbImg.removeAttribute('src');
+      lbImg.alt = '';
+      lbStage.classList.add('ph');
+      lbStage.setAttribute('data-title', title);
+    }
+
+    if(!lightbox.classList.contains('open')){
+      lastFocused = document.activeElement;
+      lightbox.classList.add('open');
+      lightbox.setAttribute('aria-hidden','false');
+      document.body.style.overflow = 'hidden';
+    }
+  }
+
+  function closeLightbox(){
+    lightbox.classList.remove('open');
+    lightbox.setAttribute('aria-hidden','true');
+    document.body.style.overflow = '';
+    currentIndex = -1;
+    if(lastFocused && lastFocused.focus){ lastFocused.focus(); }
+  }
+
+  frames.forEach(function(frame){
+    frame.addEventListener('click', function(){
+      openAt(frames.indexOf(frame));
+    });
+    frame.addEventListener('keydown', function(e){
+      if(e.key === 'Enter' || e.key === ' '){
+        e.preventDefault();
+        openAt(frames.indexOf(frame));
+      }
+    });
+  });
+
+  lbClose.addEventListener('click', closeLightbox);
+  lbBackdrop.addEventListener('click', closeLightbox);
+  lbPrev.addEventListener('click', function(){ openAt(currentIndex - 1); });
+  lbNext.addEventListener('click', function(){ openAt(currentIndex + 1); });
+  document.addEventListener('keydown', function(e){
+    if(!lightbox.classList.contains('open')) return;
+    if(e.key === 'Escape') closeLightbox();
+    if(e.key === 'ArrowLeft') openAt(currentIndex - 1);
+    if(e.key === 'ArrowRight') openAt(currentIndex + 1);
+  });
+})();
+</script>
+</body>
+</html>
