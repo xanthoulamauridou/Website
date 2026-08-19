@@ -1,9 +1,0 @@
-{
-  "name": "xanthoula-mavridou-portfolio",
-  "private": true,
-  "version": "1.0.0",
-  "description": "Source for Xanthoula Mavridou's portfolio site — builds dist/index.html from data/*.json",
-  "scripts": {
-    "build": "node src/build.js"
-  }
-}
