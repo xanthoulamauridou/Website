@@ -4,14 +4,22 @@
     "title": "Statue",
     "category": "oil",
     "series": "Perspective Series",
-    "seriesNote": "In this series I experimented with perspective and unusual viewpoints, using a more cinematic way of looking at the theme. By playing with framing and angle I explored mood, tension and atmosphere \u2014 an ongoing process where storytelling and feeling emerge through the act of painting.",
+    "seriesNote": "In this series I experimented with perspective and unusual viewpoints, using a more cinematic way of looking at the theme. By playing with framing and angle I explored mood, tension and atmosphere — an ongoing process where storytelling and feeling emerge through the act of painting.",
     "medium": "Oil on canvas",
     "year": "2025",
-    "dimensions": "50 \u00d7 70 cm",
+    "dimensions": "50 × 70 cm",
     "images": [
       "oil-statue.jpg"
     ],
-    "alt": "A solitary red-toned nude figure standing in a crimson interior."
+    "alt": "A solitary red-toned nude figure standing in a crimson interior.",
+    "price": {
+      "currency": "€",
+      "material": 50,
+      "labor": 150,
+      "frameMode": "required",
+      "frame": 75,
+      "shipping": 70
+    }
   },
   {
     "id": "oil-enter",
@@ -20,7 +28,7 @@
     "series": "Perspective Series",
     "medium": "Oil on canvas",
     "year": "2025",
-    "dimensions": "30 \u00d7 41 cm",
+    "dimensions": "30 × 41 cm",
     "images": [
       "oil-enter.jpg"
     ],
@@ -33,7 +41,7 @@
     "series": "Perspective Series",
     "medium": "Oil on canvas",
     "year": "2025",
-    "dimensions": "42 \u00d7 30 cm",
+    "dimensions": "42 × 30 cm",
     "images": [
       "oil-stairs.jpg"
     ],
@@ -46,7 +54,7 @@
     "series": "Perspective Series",
     "medium": "Oil on canvas",
     "year": "2025",
-    "dimensions": "42 \u00d7 30 cm",
+    "dimensions": "42 × 30 cm",
     "images": [
       "oil-livingroom.jpg"
     ],
@@ -58,7 +66,7 @@
     "category": "oil",
     "medium": "Oil on canvas",
     "year": "2025",
-    "dimensions": "70 \u00d7 100 cm",
+    "dimensions": "70 × 100 cm",
     "images": [
       "oil-nullspace.jpg"
     ],
@@ -70,7 +78,7 @@
     "category": "oil",
     "medium": "Oil on canvas",
     "year": "2025",
-    "dimensions": "30 \u00d7 40 cm",
+    "dimensions": "30 × 40 cm",
     "images": [
       "oil-coalecence.jpg"
     ],
@@ -82,7 +90,7 @@
     "category": "oil",
     "medium": "Oil on canvas",
     "year": "2024",
-    "dimensions": "30 \u00d7 40 cm",
+    "dimensions": "30 × 40 cm",
     "images": [
       "oil-untitled-shroud.jpg"
     ],
@@ -94,7 +102,7 @@
     "category": "oil",
     "medium": "Oil on canvas",
     "year": "2024",
-    "dimensions": "29 \u00d7 42 cm",
+    "dimensions": "29 × 42 cm",
     "images": [
       "oil-untitled-sofa.jpg"
     ],
@@ -106,7 +114,7 @@
     "category": "ink",
     "medium": "Ink on paper",
     "year": "2025",
-    "dimensions": "20 \u00d7 29 cm",
+    "dimensions": "20 × 29 cm",
     "images": [
       "ink-01.jpg"
     ],
@@ -118,7 +126,7 @@
     "category": "ink",
     "medium": "Ink on paper",
     "year": "2025",
-    "dimensions": "20 \u00d7 29 cm",
+    "dimensions": "20 × 29 cm",
     "images": [
       "ink-02.jpg"
     ],
@@ -130,7 +138,7 @@
     "category": "ink",
     "medium": "Ink on paper",
     "year": "2025",
-    "dimensions": "20 \u00d7 29 cm",
+    "dimensions": "20 × 29 cm",
     "images": [
       "ink-03.jpg"
     ],
@@ -142,7 +150,7 @@
     "category": "ink",
     "medium": "Ink on paper",
     "year": "2025",
-    "dimensions": "20 \u00d7 29 cm",
+    "dimensions": "20 × 29 cm",
     "images": [
       "ink-04.jpg"
     ],
@@ -154,7 +162,7 @@
     "category": "ink",
     "medium": "Ink on paper",
     "year": "2025",
-    "dimensions": "20 \u00d7 29 cm",
+    "dimensions": "20 × 29 cm",
     "images": [
       "ink-05.jpg"
     ],
@@ -166,7 +174,7 @@
     "category": "ink",
     "medium": "Ink on paper",
     "year": "2025",
-    "dimensions": "15 \u00d7 21 cm",
+    "dimensions": "15 × 21 cm",
     "images": [
       "ink-06.jpg"
     ],
@@ -178,7 +186,7 @@
     "category": "mixed",
     "medium": "Spray, ink & acrylic",
     "year": "2025",
-    "dimensions": "20 \u00d7 29 cm",
+    "dimensions": "20 × 29 cm",
     "images": [
       "mixed-01.jpg"
     ],
@@ -190,7 +198,7 @@
     "category": "mixed",
     "medium": "Spray, ink & acrylic",
     "year": "2025",
-    "dimensions": "20 \u00d7 29 cm",
+    "dimensions": "20 × 29 cm",
     "images": [
       "mixed-02.jpg"
     ],
@@ -202,7 +210,7 @@
     "category": "mixed",
     "subgroup": "Process & Performance",
     "medium": "Performance documentation, charcoal on paper",
-    "date": "19.05.2025 \u00b7 13:00 \u2013 15:00",
+    "date": "19.05.2025 · 13:00 – 15:00",
     "images": [
       "mixed-stalking-drawing.jpg",
       "mixed-stalking-photo.jpg"
@@ -217,12 +225,12 @@
     "category": "mixed",
     "subgroup": "Process & Performance",
     "medium": "Stop motion (GIF), paper, pencil, spray",
-    "date": "2025\u20132026, in progress",
+    "date": "2025–2026, in progress",
     "images": [
       "mixed-quickness.jpg"
     ],
     "alt": "Grid of stop-motion animation frames showing a running paper figure.",
-    "description": "An ongoing project drawing on Italo Calvino's <em>Six Memos for the Next Millennium</em>. I am currently concluding the chapter on Quickness, exploring how each concept can be articulated through analog stop-motion and examining the workings of the medium itself \u2014 photographing each frame by cellphone and assembling the sequence into a GIF.",
+    "description": "An ongoing project drawing on Italo Calvino's <em>Six Memos for the Next Millennium</em>. I am currently concluding the chapter on Quickness, exploring how each concept can be articulated through analog stop-motion and examining the workings of the medium itself — photographing each frame by cellphone and assembling the sequence into a GIF.",
     "feature": true
   },
   {
@@ -235,7 +243,7 @@
       "sketches-grid.jpg"
     ],
     "alt": "Grid of nine figure studies and portraits in ink and charcoal, mostly from life-drawing sessions.",
-    "description": "Quick studies from life-drawing sessions \u2014 a regular practice that runs alongside the larger finished paintings.",
+    "description": "Quick studies from life-drawing sessions — a regular practice that runs alongside the larger finished paintings.",
     "feature": true
   }
 ]
