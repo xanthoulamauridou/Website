@@ -237,5 +237,16 @@
     "alt": "Grid of nine figure studies and portraits in ink and charcoal, mostly from life-drawing sessions.",
     "description": "Quick studies from life-drawing sessions — a regular practice that runs alongside the larger finished paintings.",
     "feature": true
+  },
+  {
+    "id": "untitled-ynmrf",
+    "title": "Untitled",
+    "category": "oil",
+    "medium": "Oil on paper",
+    "dimensions": "21×30",
+    "images": [
+      "untitled-ynmrf.jpg"
+    ],
+    "alt": "Study of the face through a limited colour palette, with an emphasis on tonality, light, and the transitions of the form."
   }
 ]
