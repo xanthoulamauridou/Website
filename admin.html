@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Add Work — Xanthoula Mavridou</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Fraunces:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box}
+*{margin:0;padding:0}
+:root{
+  --ink:#16130f; --wall:#ece7de; --paper:#f8f5ef; --oxblood:#7a1620; --oxblood-2:#9c2530;
+  --graphite:#6e655c; --line:rgba(22,19,15,.14);
+  --ff-display:'Fraunces',Georgia,serif; --ff-body:'Archivo',sans-serif;
+  --ok:#2f6b3f; --err:#a3231f;
+}
+body{font-family:var(--ff-body);background:var(--wall);color:var(--ink);line-height:1.55;padding-bottom:4rem}
+.container{max-width:720px;margin:0 auto;padding:0 1.25rem}
+header.top{padding:2.5rem 0 1.5rem;border-bottom:1px solid var(--line);margin-bottom:2rem}
+header.top .eyebrow{font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--oxblood);font-weight:600;margin-bottom:.6rem}
+header.top h1{font-family:var(--ff-display);font-weight:400;font-style:italic;font-size:clamp(1.6rem,4vw,2.2rem)}
+header.top a{color:var(--graphite);font-size:.85rem;text-decoration:underline;display:inline-block;margin-top:.6rem}
+
+.card{background:var(--paper);border:1px solid var(--line);border-radius:6px;padding:1.5rem;margin-bottom:1.75rem}
+.card h2{font-family:var(--ff-display);font-style:italic;font-weight:500;font-size:1.15rem;margin-bottom:.3rem}
+.card .hint{color:var(--graphite);font-size:.83rem;margin-bottom:1rem;line-height:1.6}
+
+label{display:block;font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;color:var(--graphite);font-weight:600;margin:1rem 0 .35rem}
+label:first-of-type{margin-top:0}
+input[type=text],input[type=password],input[type=number],select,textarea{
+  width:100%;padding:.6rem .7rem;border:1px solid var(--line);border-radius:4px;background:#fff;
+  font-family:var(--ff-body);font-size:.95rem;color:var(--ink);
+}
+textarea{resize:vertical;min-height:5rem}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+@media(max-width:560px){.row{grid-template-columns:1fr}}
+.check{display:flex;align-items:center;gap:.5rem;margin-top:1rem}
+.check input{width:auto}
+.check label{margin:0;text-transform:none;letter-spacing:0;font-size:.88rem;color:var(--ink);font-weight:400}
+
+.cost-row{display:grid;grid-template-columns:1fr 140px;gap:1rem;align-items:end}
+.cost-row label{margin-top:1rem}
+.radio-group{display:flex;flex-direction:column;gap:.55rem;margin-top:.5rem}
+.radio-opt{display:flex;align-items:flex-start;gap:.55rem;font-size:.9rem}
+.radio-opt input{margin-top:.2rem}
+.radio-opt .rlabel{font-weight:600;display:block}
+.radio-opt .rdesc{color:var(--graphite);font-size:.8rem}
+.total-preview{font-family:var(--ff-display);font-style:italic;color:var(--oxblood);font-size:1.05rem;margin-top:.9rem}
+
+button{font-family:var(--ff-body);font-size:.85rem;letter-spacing:.03em;font-weight:600;cursor:pointer;border-radius:4px;border:1px solid transparent;padding:.65rem 1.2rem;transition:opacity .2s}
+button.primary{background:var(--ink);color:var(--wall)}
+button.primary:hover{opacity:.85}
+button.primary:disabled{opacity:.4;cursor:not-allowed}
+button.ghost{background:transparent;border-color:var(--line);color:var(--ink)}
+button.ghost:hover{background:var(--wall)}
+.actions{display:flex;gap:.75rem;align-items:center;margin-top:1.5rem;flex-wrap:wrap}
+
+.status{font-size:.83rem;margin-top:.6rem;padding:.5rem .7rem;border-radius:4px;display:none}
+.status.show{display:block}
+.status.ok{background:rgba(47,107,63,.1);color:var(--ok)}
+.status.err{background:rgba(163,35,31,.1);color:var(--err)}
+.status.pending{background:rgba(110,101,92,.12);color:var(--graphite)}
+
+.tabs{display:flex;gap:.5rem;margin-bottom:1.5rem}
+.tabs button{background:transparent;border:1px solid var(--line);color:var(--graphite)}
+.tabs button.active{background:var(--ink);color:var(--wall);border-color:var(--ink)}
+
+.thumbs{display:flex;gap:.6rem;flex-wrap:wrap;margin-top:.7rem}
+.thumbs img{width:64px;height:64px;object-fit:cover;border-radius:4px;border:1px solid var(--line)}
+
+.log{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.78rem;white-space:pre-wrap;background:var(--ink);color:#dcd3c8;padding:1rem;border-radius:6px;max-height:220px;overflow:auto;margin-top:1rem;display:none}
+.log.show{display:block}
+details summary{cursor:pointer;font-size:.83rem;color:var(--graphite);margin-top:.4rem}
+</style>
+</head>
+<body>
+
+<div class="container">
+  <header class="top">
+    <p class="eyebrow">Xanthoula Mavridou — Site Admin</p>
+    <h1>Add a work or an exhibition</h1>
+    <a href="./index.html">← back to the site</a>
+  </header>
+
+  <section class="card" id="connectCard">
+    <h2>1. Connect to GitHub</h2>
+    <p class="hint">Needed once per device. Create a token at
+      <strong>github.com → Settings → Developer settings → Personal access tokens → Fine-grained tokens</strong>,
+      scoped to <em>only this repository</em>, with <strong>Contents: Read and write</strong> permission.
+      It's saved only in this browser, never sent anywhere except directly to GitHub.</p>
+
+    <div class="row">
+      <div>
+        <label for="owner">GitHub username</label>
+        <input type="text" id="owner" placeholder="e.g. xanthoula-m" autocomplete="off">
+      </div>
+      <div>
+        <label for="repo">Repository name</label>
+        <input type="text" id="repo" placeholder="e.g. portfolio" autocomplete="off">
+      </div>
+    </div>
+    <label for="token">Personal access token</label>
+    <input type="password" id="token" placeholder="github_pat_..." autocomplete="off">
+
+    <div class="actions">
+      <button class="primary" id="testBtn" type="button">Test connection</button>
+      <button class="ghost" id="forgetBtn" type="button">Forget on this device</button>
+    </div>
+    <div class="status" id="connStatus"></div>
+  </section>
+
+  <div class="tabs">
+    <button data-tab="work" class="active">New artwork</button>
+    <button data-tab="edit">Edit price / sold</button>
+    <button data-tab="exhibition">New exhibition</button>
+  </div>
+
+  <form class="card" id="workForm">
+    <h2>Artwork details</h2>
+    <p class="hint">Fill this in, choose your photo(s), and press Publish. It will appear on the live site within a minute or two.</p>
+
+    <label for="w-title">Title</label>
+    <input type="text" id="w-title" required placeholder="e.g. Untitled">
+
+    <div class="row">
+      <div>
+        <label for="w-category">Category</label>
+        <select id="w-category" required>
+          <option value="oil">Oil Paintings</option>
+          <option value="ink">Ink Drawings</option>
+          <option value="mixed">Mixed Media</option>
+          <option value="sketches">Sketches</option>
+        </select>
+      </div>
+      <div>
+        <label for="w-year">Year</label>
+        <input type="text" id="w-year" placeholder="2026">
+      </div>
+    </div>
+
+    <div class="row">
+      <div>
+        <label for="w-medium">Medium</label>
+        <input type="text" id="w-medium" placeholder="Oil on canvas">
+      </div>
+      <div>
+        <label for="w-dimensions">Dimensions</label>
+        <input type="text" id="w-dimensions" placeholder="50 × 70 cm">
+      </div>
+    </div>
+
+    <details>
+      <summary>Series / process piece options (optional)</summary>
+      <label for="w-series">Series or subgroup name</label>
+      <input type="text" id="w-series" list="seriesList" placeholder="e.g. Perspective Series">
+      <datalist id="seriesList"></datalist>
+      <label for="w-seriesnote">Series note — only fill in for the first work of a new series</label>
+      <textarea id="w-seriesnote" placeholder="Short note shown once above the series"></textarea>
+      <label for="w-date">Specific date (for performance / process pieces)</label>
+      <input type="text" id="w-date" placeholder="19.05.2025 · 13:00 – 15:00">
+      <label for="w-description">Longer description (shown as a feature card)</label>
+      <textarea id="w-description" placeholder="Optional paragraph of text under the work"></textarea>
+    </details>
+
+    <label for="w-alt">Short description (for accessibility)</label>
+    <input type="text" id="w-alt" placeholder="One line describing the image">
+
+    <h2 style="margin-top:1.75rem">Price <span style="font-style:normal;font-weight:400;font-size:.75rem;color:var(--graphite)">(optional — leave at 0 to publish without a price)</span></h2>
+    <div id="w-price-fields"></div>
+    <div class="check">
+      <input type="checkbox" id="w-sold">
+      <label for="w-sold">Mark this piece as sold</label>
+    </div>
+
+    <label for="w-files" style="margin-top:1.75rem">Photo(s)</label>
+    <input type="file" id="w-files" accept="image/*" multiple required>
+    <div class="thumbs" id="w-thumbs"></div>
+
+    <div class="actions">
+      <button class="primary" type="submit" id="w-submit">Publish artwork</button>
+    </div>
+    <div class="status" id="w-status"></div>
+    <pre class="log" id="w-log"></pre>
+  </form>
+
+  <form class="card" id="editForm" hidden>
+    <h2>Edit an existing work</h2>
+    <p class="hint">Set or update the price, and mark a piece as sold. This only touches the one work you pick — everything else about it stays the same.</p>
+
+    <label for="editSelect">Work</label>
+    <select id="editSelect">
+      <option value="">— press "Test connection" above first, then choose a work —</option>
+    </select>
+
+    <h2 style="margin-top:1.75rem">Price</h2>
+    <div id="edit-price-fields"></div>
+
+    <div class="check" style="margin-top:1.5rem">
+      <input type="checkbox" id="edit-sold">
+      <label for="edit-sold">Mark this piece as sold</label>
+    </div>
+
+    <div class="actions">
+      <button class="primary" type="submit" id="edit-submit">Save changes</button>
+    </div>
+    <div class="status" id="edit-status"></div>
+    <pre class="log" id="edit-log"></pre>
+  </form>
+
+  <form class="card" id="exhibitionForm" hidden>
+    <h2>Exhibition details</h2>
+    <p class="hint">Adds a new entry to the Exhibitions section (most recent stays at the top if you list it first).</p>
+
+    <label for="e-title">Title / city</label>
+    <input type="text" id="e-title" required placeholder="e.g. Athens">
+    <div class="row">
+      <div>
+        <label for="e-tag">Tag</label>
+        <input type="text" id="e-tag" placeholder="Group Exhibition">
+      </div>
+      <div>
+        <label for="e-dates">Dates</label>
+        <input type="text" id="e-dates" placeholder="17 – 31 July 2026">
+      </div>
+    </div>
+    <label for="e-venue">Venue</label>
+    <input type="text" id="e-venue" placeholder="Space name, Foundation, City">
+    <label for="e-description">Description</label>
+    <textarea id="e-description" placeholder="A sentence or two about the show"></textarea>
+
+    <div class="actions">
+      <button class="primary" type="submit" id="e-submit">Publish exhibition</button>
+    </div>
+    <div class="status" id="e-status"></div>
+    <pre class="log" id="e-log"></pre>
+  </form>
+</div>
+
+<script>
+const GH_API = 'https://api.github.com';
+
+// ---------- settings ----------
+function loadSettings(){
+  return {
+    owner: localStorage.getItem('gh_owner') || '',
+    repo: localStorage.getItem('gh_repo') || '',
+    token: localStorage.getItem('gh_token') || '',
+  };
+}
+function saveSettings(owner, repo, token){
+  localStorage.setItem('gh_owner', owner);
+  localStorage.setItem('gh_repo', repo);
+  localStorage.setItem('gh_token', token);
+}
+function clearSettings(){
+  localStorage.removeItem('gh_owner');
+  localStorage.removeItem('gh_repo');
+  localStorage.removeItem('gh_token');
+}
+
+const $ = (id) => document.getElementById(id);
+
+(function initSettings(){
+  const s = loadSettings();
+  $('owner').value = s.owner;
+  $('repo').value = s.repo;
+  $('token').value = s.token;
+})();
+
+function setStatus(el, kind, msg){
+  el.className = 'status show ' + kind;
+  el.textContent = msg;
+}
+
+// ---------- utf-8 safe base64 ----------
+function utf8ToBase64(str){
+  const bytes = new TextEncoder().encode(str);
+  let binary = '';
+  bytes.forEach(b => binary += String.fromCharCode(b));
+  return btoa(binary);
+}
+function base64ToUtf8(b64){
+  const binary = atob(b64.replace(/\n/g, ''));
+  const bytes = new Uint8Array(binary.length);
+  for (let i = 0; i < binary.length; i++) bytes[i] = binary.charCodeAt(i);
+  return new TextDecoder().decode(bytes);
+}
+
+// ---------- GitHub API ----------
+async function ghRequest(path, options = {}){
+  const { owner, repo, token } = loadSettings();
+  if (!owner || !repo || !token) throw new Error('Fill in GitHub username, repository and token first.');
+  const url = path ? `${GH_API}/repos/${owner}/${repo}/${path}` : `${GH_API}/repos/${owner}/${repo}`;
+  const res = await fetch(url, {
+    ...options,
+    headers: {
+      'Authorization': `Bearer ${token}`,
+      'Accept': 'application/vnd.github+json',
+      ...(options.headers || {}),
+    },
+  });
+  if (!res.ok){
+    let msg = res.statusText;
+    try { const err = await res.json(); if (err.message) msg = err.message; } catch(e){}
+    throw new Error(`GitHub ${res.status}: ${msg}`);
+  }
+  return res.status === 204 ? null : res.json();
+}
+
+async function getFile(path){
+  try { return await ghRequest(`contents/${encodeURIComponent(path).replace(/%2F/g,'/')}`); }
+  catch (e){ if (String(e.message).includes('404')) return null; throw e; }
+}
+async function putFile(path, contentB64, message, sha){
+  const body = { message, content: contentB64, branch: 'main' };
+  if (sha) body.sha = sha;
+  return ghRequest(`contents/${encodeURIComponent(path).replace(/%2F/g,'/')}`, {
+    method: 'PUT', headers: {'Content-Type':'application/json'}, body: JSON.stringify(body),
+  });
+}
+
+// ---------- image resize (keeps uploads small & fast) ----------
+function resizeImage(file, maxDim = 1600, quality = 0.85){
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onerror = () => reject(new Error('Could not read file'));
+    reader.onload = (e) => {
+      const img = new Image();
+      img.onerror = () => reject(new Error('Could not decode image'));
+      img.onload = () => {
+        let { width, height } = img;
+        if (Math.max(width, height) > maxDim){
+          const scale = maxDim / Math.max(width, height);
+          width = Math.round(width * scale);
+          height = Math.round(height * scale);
+        }
+        const canvas = document.createElement('canvas');
+        canvas.width = width; canvas.height = height;
+        canvas.getContext('2d').drawImage(img, 0, 0, width, height);
+        resolve(canvas.toDataURL('image/jpeg', quality).split(',')[1]);
+      };
+      img.src = e.target.result;
+    };
+    reader.readAsDataURL(file);
+  });
+}
+
+function slugify(str){
+  return str.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'')
+    .replace(/[^a-z0-9]+/g,'-').replace(/(^-|-$)/g,'') || 'item';
+}
+
+// ---------- test connection ----------
+let seriesCache = [];
+let worksCache = [];
+$('testBtn').addEventListener('click', async () => {
+  const owner = $('owner').value.trim(), repo = $('repo').value.trim(), token = $('token').value.trim();
+  const statusEl = $('connStatus');
+  if (!owner || !repo || !token){ setStatus(statusEl, 'err', 'Fill in all three fields first.'); return; }
+  saveSettings(owner, repo, token);
+  setStatus(statusEl, 'pending', 'Checking…');
+  try {
+    const repoInfo = await ghRequest('');
+    const works = await getFile('data/works.json');
+    if (works){
+      worksCache = JSON.parse(base64ToUtf8(works.content));
+      seriesCache = [...new Set(worksCache.map(w => w.series || w.subgroup).filter(Boolean))];
+      const dl = $('seriesList');
+      dl.innerHTML = seriesCache.map(s => `<option value="${s.replace(/"/g,'&quot;')}">`).join('');
+
+      const sel = $('editSelect');
+      sel.innerHTML = '<option value="">— choose a work —</option>';
+      worksCache.forEach((w, i) => {
+        const opt = document.createElement('option');
+        opt.value = i;
+        opt.textContent = [w.title, w.year].filter(Boolean).join(', ') + (w.category ? ` — ${w.category}` : '') + (w.sold ? '  (sold)' : '');
+        sel.appendChild(opt);
+      });
+    }
+    setStatus(statusEl, 'ok', `Connected to ${repoInfo.full_name}. Ready to publish.`);
+  } catch (err){
+    setStatus(statusEl, 'err', err.message);
+  }
+});
+$('forgetBtn').addEventListener('click', () => {
+  clearSettings();
+  $('owner').value = ''; $('repo').value = ''; $('token').value = '';
+  setStatus($('connStatus'), 'ok', 'Forgotten on this device.');
+});
+
+// ---------- tabs ----------
+document.querySelectorAll('.tabs button').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.tabs button').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    $('workForm').hidden = btn.dataset.tab !== 'work';
+    $('editForm').hidden = btn.dataset.tab !== 'edit';
+    $('exhibitionForm').hidden = btn.dataset.tab !== 'exhibition';
+  });
+});
+
+// ---------- price fields (shared between "New artwork" and "Edit work") ----------
+function priceFieldsHTML(prefix){
+  return `
+    <div class="row">
+      <div>
+        <label for="${prefix}-currency">Currency</label>
+        <select id="${prefix}-currency">
+          <option value="€">EUR — €</option>
+          <option value="$">USD — $</option>
+          <option value="£">GBP — £</option>
+        </select>
+      </div>
+    </div>
+    <div class="cost-row"><div><label for="${prefix}-material">Material cost</label></div><div><input type="number" id="${prefix}-material" min="0" step="0.01" value="0"></div></div>
+    <div class="cost-row"><div><label for="${prefix}-labor">Labor cost</label></div><div><input type="number" id="${prefix}-labor" min="0" step="0.01" value="0"></div></div>
+    <div class="cost-row"><div><label for="${prefix}-shipping">Shipping cost</label></div><div><input type="number" id="${prefix}-shipping" min="0" step="0.01" value="0"></div></div>
+    <label>Frame</label>
+    <div class="radio-group">
+      <label class="radio-opt">
+        <input type="radio" name="${prefix}-frameMode" value="none" checked>
+        <span><span class="rlabel">No frame</span><span class="rdesc">Not offered framed — one price, no frame line.</span></span>
+      </label>
+      <label class="radio-opt">
+        <input type="radio" name="${prefix}-frameMode" value="required">
+        <span><span class="rlabel">Frame required</span><span class="rdesc">Always framed — one price, frame cost included.</span></span>
+      </label>
+      <label class="radio-opt">
+        <input type="radio" name="${prefix}-frameMode" value="optional">
+        <span><span class="rlabel">Frame optional</span><span class="rdesc">Buyer's choice — shows both prices, with and without.</span></span>
+      </label>
+    </div>
+    <div class="cost-row" id="${prefix}-frameCostRow" style="display:none">
+      <div><label for="${prefix}-frame">Frame cost</label></div>
+      <div><input type="number" id="${prefix}-frame" min="0" step="0.01" value="0"></div>
+    </div>
+    <div class="total-preview" id="${prefix}-totalPreview"></div>
+  `;
+}
+
+function wireUpPriceFields(prefix){
+  const num = (id) => parseFloat($(id).value) || 0;
+  function currentMode(){
+    const el = document.querySelector(`input[name="${prefix}-frameMode"]:checked`);
+    return el ? el.value : 'none';
+  }
+  function refresh(){
+    const mode = currentMode();
+    $(`${prefix}-frameCostRow`).style.display = mode === 'none' ? 'none' : 'grid';
+    const cur = $(`${prefix}-currency`).value;
+    const material = num(`${prefix}-material`), labor = num(`${prefix}-labor`), shipping = num(`${prefix}-shipping`), frame = num(`${prefix}-frame`);
+    const base = material + labor + shipping;
+    const fmt = (n) => cur + ' ' + n.toLocaleString('en-US', {minimumFractionDigits:2, maximumFractionDigits:2});
+    const el = $(`${prefix}-totalPreview`);
+    if (!material && !labor && !shipping && !(mode !== 'none' && frame)){
+      el.textContent = 'No price set — this work will publish without a price tag.';
+    } else if (mode === 'optional'){
+      el.textContent = `Without frame: ${fmt(base)}   ·   With frame: ${fmt(base + frame)}`;
+    } else {
+      el.textContent = `Total: ${fmt(mode === 'required' ? base + frame : base)}`;
+    }
+  }
+  document.querySelectorAll(`input[name="${prefix}-frameMode"]`).forEach(r => r.addEventListener('change', refresh));
+  [`${prefix}-material`, `${prefix}-labor`, `${prefix}-shipping`, `${prefix}-frame`, `${prefix}-currency`].forEach(id => {
+    $(id).addEventListener('input', refresh);
+    $(id).addEventListener('change', refresh);
+  });
+  refresh();
+}
+
+function readPriceFields(prefix){
+  const num = (id) => parseFloat($(id).value) || 0;
+  const mode = document.querySelector(`input[name="${prefix}-frameMode"]:checked`).value;
+  const material = num(`${prefix}-material`), labor = num(`${prefix}-labor`), shipping = num(`${prefix}-shipping`);
+  const frame = mode === 'none' ? 0 : num(`${prefix}-frame`);
+  const hasPrice = !!(material || labor || shipping || (mode !== 'none' && frame));
+  if (!hasPrice) return null;
+  return { currency: $(`${prefix}-currency`).value, material, labor, frameMode: mode, frame, shipping };
+}
+
+function setPriceFields(prefix, price){
+  document.querySelector(`input[name="${prefix}-frameMode"][value="none"]`).checked = true;
+  $(`${prefix}-currency`).value = '€';
+  $(`${prefix}-material`).value = 0;
+  $(`${prefix}-labor`).value = 0;
+  $(`${prefix}-shipping`).value = 0;
+  $(`${prefix}-frame`).value = 0;
+  if (price){
+    $(`${prefix}-currency`).value = price.currency || '€';
+    $(`${prefix}-material`).value = price.material || 0;
+    $(`${prefix}-labor`).value = price.labor || 0;
+    $(`${prefix}-shipping`).value = price.shipping || 0;
+    $(`${prefix}-frame`).value = price.frame || 0;
+    const mode = price.frameMode || 'none';
+    const radio = document.querySelector(`input[name="${prefix}-frameMode"][value="${mode}"]`);
+    if (radio) radio.checked = true;
+  }
+  wireUpPriceFields(prefix);
+}
+
+$('w-price-fields').innerHTML = priceFieldsHTML('w');
+wireUpPriceFields('w');
+$('edit-price-fields').innerHTML = priceFieldsHTML('edit');
+wireUpPriceFields('edit');
+
+$('editSelect').addEventListener('change', () => {
+  const w = worksCache[$('editSelect').value];
+  if (!w){ setPriceFields('edit', null); $('edit-sold').checked = false; return; }
+  setPriceFields('edit', w.price || null);
+  $('edit-sold').checked = !!w.sold;
+});
+
+// ---------- save edits to an existing work ----------
+$('editForm').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const idx = $('editSelect').value;
+  const statusEl = $('edit-status'), logEl = $('edit-log'), btn = $('edit-submit');
+  if (idx === ''){ setStatus(statusEl, 'err', 'Choose a work first.'); return; }
+
+  btn.disabled = true;
+  logEl.className = 'log show'; logEl.textContent = '';
+  const log = (line) => { logEl.textContent += line + '\n'; logEl.scrollTop = logEl.scrollHeight; };
+  setStatus(statusEl, 'pending', 'Saving…');
+
+  try {
+    log('Fetching data/works.json…');
+    const current = await getFile('data/works.json');
+    if (!current) throw new Error('data/works.json not found in the repo.');
+    const works = JSON.parse(base64ToUtf8(current.content));
+    const target = works[idx];
+    if (!target) throw new Error('Could not find that work anymore — try Test connection again.');
+
+    const price = readPriceFields('edit');
+    if (price) target.price = price; else delete target.price;
+    if ($('edit-sold').checked) target.sold = true; else delete target.sold;
+
+    log(`Updating "${target.title}"…`);
+    await putFile('data/works.json', utf8ToBase64(JSON.stringify(works, null, 2)),
+      `Update price/sold: ${target.title}`, current.sha);
+    worksCache = works;
+
+    log('Done.');
+    setStatus(statusEl, 'ok', `Saved "${target.title}". It will update on the live site within a minute or two.`);
+  } catch (err){
+    log('Error: ' + err.message);
+    setStatus(statusEl, 'err', err.message);
+  } finally {
+    btn.disabled = false;
+  }
+});
+
+// ---------- image thumbnails preview ----------
+$('w-files').addEventListener('change', () => {
+  const wrap = $('w-thumbs');
+  wrap.innerHTML = '';
+  Array.from($('w-files').files).forEach(file => {
+    const img = document.createElement('img');
+    img.src = URL.createObjectURL(file);
+    wrap.appendChild(img);
+  });
+});
+
+// ---------- publish artwork ----------
+$('workForm').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const btn = $('w-submit'), statusEl = $('w-status'), logEl = $('w-log');
+  const files = Array.from($('w-files').files);
+  if (!files.length){ setStatus(statusEl, 'err', 'Choose at least one photo.'); return; }
+
+  const title = $('w-title').value.trim();
+  if (!title){ setStatus(statusEl, 'err', 'Title is required.'); return; }
+
+  btn.disabled = true;
+  logEl.className = 'log show'; logEl.textContent = '';
+  const log = (line) => { logEl.textContent += line + '\n'; logEl.scrollTop = logEl.scrollHeight; };
+  setStatus(statusEl, 'pending', 'Publishing…');
+
+  try {
+    const slug = slugify(title) + '-' + Date.now().toString(36).slice(-5);
+    const imageNames = [];
+    for (let i = 0; i < files.length; i++){
+      log(`Resizing ${files[i].name}…`);
+      const b64 = await resizeImage(files[i]);
+      const filename = files.length > 1 ? `${slug}-${i+1}.jpg` : `${slug}.jpg`;
+      log(`Uploading images/works/${filename}…`);
+      await putFile(`images/works/${filename}`, b64, `Add image for "${title}"`);
+      imageNames.push(filename);
+    }
+
+    log('Fetching data/works.json…');
+    const current = await getFile('data/works.json');
+    const works = current ? JSON.parse(base64ToUtf8(current.content)) : [];
+
+    const entry = { id: slug, title, category: $('w-category').value };
+    const series = $('w-series').value.trim();
+    if (series) entry.series = series;
+    const seriesNote = $('w-seriesnote').value.trim();
+    if (seriesNote) entry.seriesNote = seriesNote;
+    const medium = $('w-medium').value.trim();
+    if (medium) entry.medium = medium;
+    const year = $('w-year').value.trim();
+    if (year) entry.year = year;
+    const dimensions = $('w-dimensions').value.trim();
+    if (dimensions) entry.dimensions = dimensions;
+    const date = $('w-date').value.trim();
+    if (date) entry.date = date;
+    entry.images = imageNames;
+    const alt = $('w-alt').value.trim();
+    if (alt) entry.alt = alt;
+    const description = $('w-description').value.trim();
+    if (description) entry.description = description;
+    const price = readPriceFields('w');
+    if (price) entry.price = price;
+    if ($('w-sold').checked) entry.sold = true;
+
+    works.push(entry);
+    log('Updating data/works.json…');
+    await putFile('data/works.json', utf8ToBase64(JSON.stringify(works, null, 2)),
+      `Add artwork: ${title}`, current ? current.sha : undefined);
+
+    log('Done.');
+    setStatus(statusEl, 'ok', `Published "${title}". It will appear on the live site within a minute or two.`);
+    $('workForm').reset();
+    $('w-thumbs').innerHTML = '';
+    document.querySelector('input[name="w-frameMode"][value="none"]').dispatchEvent(new Event('change'));
+  } catch (err){
+    log('Error: ' + err.message);
+    setStatus(statusEl, 'err', err.message);
+  } finally {
+    btn.disabled = false;
+  }
+});
+
+// ---------- publish exhibition ----------
+$('exhibitionForm').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const btn = $('e-submit'), statusEl = $('e-status'), logEl = $('e-log');
+  const title = $('e-title').value.trim();
+  if (!title){ setStatus(statusEl, 'err', 'Title is required.'); return; }
+
+  btn.disabled = true;
+  logEl.className = 'log show'; logEl.textContent = '';
+  const log = (line) => { logEl.textContent += line + '\n'; logEl.scrollTop = logEl.scrollHeight; };
+  setStatus(statusEl, 'pending', 'Publishing…');
+
+  try {
+    log('Fetching data/exhibitions.json…');
+    const current = await getFile('data/exhibitions.json');
+    const list = current ? JSON.parse(base64ToUtf8(current.content)) : [];
+
+    const entry = { id: slugify(title) + '-' + Date.now().toString(36).slice(-5), title };
+    const tag = $('e-tag').value.trim(); if (tag) entry.tag = tag;
+    const venue = $('e-venue').value.trim(); if (venue) entry.venue = venue;
+    const dates = $('e-dates').value.trim(); if (dates) entry.dates = dates;
+    const description = $('e-description').value.trim(); if (description) entry.description = description;
+
+    list.unshift(entry); // newest first
+    log('Updating data/exhibitions.json…');
+    await putFile('data/exhibitions.json', utf8ToBase64(JSON.stringify(list, null, 2)),
+      `Add exhibition: ${title}`, current ? current.sha : undefined);
+
+    log('Done.');
+    setStatus(statusEl, 'ok', `Published "${title}". It will appear on the live site within a minute or two.`);
+    $('exhibitionForm').reset();
+  } catch (err){
+    log('Error: ' + err.message);
+    setStatus(statusEl, 'err', err.message);
+  } finally {
+    btn.disabled = false;
+  }
+});
+</script>
+</body>
+</html>
