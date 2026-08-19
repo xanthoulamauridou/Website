@@ -1,0 +1,241 @@
+[
+  {
+    "id": "oil-statue",
+    "title": "Statue",
+    "category": "oil",
+    "series": "Perspective Series",
+    "seriesNote": "In this series I experimented with perspective and unusual viewpoints, using a more cinematic way of looking at the theme. By playing with framing and angle I explored mood, tension and atmosphere \u2014 an ongoing process where storytelling and feeling emerge through the act of painting.",
+    "medium": "Oil on canvas",
+    "year": "2025",
+    "dimensions": "50 \u00d7 70 cm",
+    "images": [
+      "oil-statue.jpg"
+    ],
+    "alt": "A solitary red-toned nude figure standing in a crimson interior."
+  },
+  {
+    "id": "oil-enter",
+    "title": "Enter",
+    "category": "oil",
+    "series": "Perspective Series",
+    "medium": "Oil on canvas",
+    "year": "2025",
+    "dimensions": "30 \u00d7 41 cm",
+    "images": [
+      "oil-enter.jpg"
+    ],
+    "alt": "A figure glimpsed through a doorway in a bright red corridor."
+  },
+  {
+    "id": "oil-stairs",
+    "title": "Stairs",
+    "category": "oil",
+    "series": "Perspective Series",
+    "medium": "Oil on canvas",
+    "year": "2025",
+    "dimensions": "42 \u00d7 30 cm",
+    "images": [
+      "oil-stairs.jpg"
+    ],
+    "alt": "A figure descending a stairwell seen from above."
+  },
+  {
+    "id": "oil-livingroom",
+    "title": "Living Room",
+    "category": "oil",
+    "series": "Perspective Series",
+    "medium": "Oil on canvas",
+    "year": "2025",
+    "dimensions": "42 \u00d7 30 cm",
+    "images": [
+      "oil-livingroom.jpg"
+    ],
+    "alt": "A domestic interior with a sofa and television."
+  },
+  {
+    "id": "oil-nullspace",
+    "title": "Nullspace",
+    "category": "oil",
+    "medium": "Oil on canvas",
+    "year": "2025",
+    "dimensions": "70 \u00d7 100 cm",
+    "images": [
+      "oil-nullspace.jpg"
+    ],
+    "alt": "A red-bleeding street scene receding into a pale sky."
+  },
+  {
+    "id": "oil-coalecence",
+    "title": "Coalecence",
+    "category": "oil",
+    "medium": "Oil on canvas",
+    "year": "2025",
+    "dimensions": "30 \u00d7 40 cm",
+    "images": [
+      "oil-coalecence.jpg"
+    ],
+    "alt": "Two pale embracing figures against a red ground."
+  },
+  {
+    "id": "oil-untitled-shroud",
+    "title": "Untitled",
+    "category": "oil",
+    "medium": "Oil on canvas",
+    "year": "2024",
+    "dimensions": "30 \u00d7 40 cm",
+    "images": [
+      "oil-untitled-shroud.jpg"
+    ],
+    "alt": "A shrouded, seated figure against black."
+  },
+  {
+    "id": "oil-untitled-sofa",
+    "title": "Untitled",
+    "category": "oil",
+    "medium": "Oil on canvas",
+    "year": "2024",
+    "dimensions": "29 \u00d7 42 cm",
+    "images": [
+      "oil-untitled-sofa.jpg"
+    ],
+    "alt": "An empty sofa in a dark red room."
+  },
+  {
+    "id": "ink-01",
+    "title": "Untitled",
+    "category": "ink",
+    "medium": "Ink on paper",
+    "year": "2025",
+    "dimensions": "20 \u00d7 29 cm",
+    "images": [
+      "ink-01.jpg"
+    ],
+    "alt": "A dissolved and bleeding ink portrait."
+  },
+  {
+    "id": "ink-02",
+    "title": "Untitled",
+    "category": "ink",
+    "medium": "Ink on paper",
+    "year": "2025",
+    "dimensions": "20 \u00d7 29 cm",
+    "images": [
+      "ink-02.jpg"
+    ],
+    "alt": "A dissolved ink portrait."
+  },
+  {
+    "id": "ink-03",
+    "title": "Untitled",
+    "category": "ink",
+    "medium": "Ink on paper",
+    "year": "2025",
+    "dimensions": "20 \u00d7 29 cm",
+    "images": [
+      "ink-03.jpg"
+    ],
+    "alt": "An abstracted face formed from ink blots."
+  },
+  {
+    "id": "ink-04",
+    "title": "Untitled",
+    "category": "ink",
+    "medium": "Ink on paper",
+    "year": "2025",
+    "dimensions": "20 \u00d7 29 cm",
+    "images": [
+      "ink-04.jpg"
+    ],
+    "alt": "An ink figure study with an animal mask."
+  },
+  {
+    "id": "ink-05",
+    "title": "Untitled",
+    "category": "ink",
+    "medium": "Ink on paper",
+    "year": "2025",
+    "dimensions": "20 \u00d7 29 cm",
+    "images": [
+      "ink-05.jpg"
+    ],
+    "alt": "A group of dark standing figures in ink."
+  },
+  {
+    "id": "ink-06",
+    "title": "Untitled",
+    "category": "ink",
+    "medium": "Ink on paper",
+    "year": "2025",
+    "dimensions": "15 \u00d7 21 cm",
+    "images": [
+      "ink-06.jpg"
+    ],
+    "alt": "An ink portrait on toned paper."
+  },
+  {
+    "id": "mixed-01",
+    "title": "Untitled",
+    "category": "mixed",
+    "medium": "Spray, ink & acrylic",
+    "year": "2025",
+    "dimensions": "20 \u00d7 29 cm",
+    "images": [
+      "mixed-01.jpg"
+    ],
+    "alt": "A mixed media bust portrait emerging from a dark ground."
+  },
+  {
+    "id": "mixed-02",
+    "title": "Untitled",
+    "category": "mixed",
+    "medium": "Spray, ink & acrylic",
+    "year": "2025",
+    "dimensions": "20 \u00d7 29 cm",
+    "images": [
+      "mixed-02.jpg"
+    ],
+    "alt": "A mixed media abstract form."
+  },
+  {
+    "id": "mixed-stalking",
+    "title": "2nd Stalking",
+    "category": "mixed",
+    "subgroup": "Process & Performance",
+    "medium": "Performance documentation, charcoal on paper",
+    "date": "19.05.2025 \u00b7 13:00 \u2013 15:00",
+    "images": [
+      "mixed-stalking-drawing.jpg",
+      "mixed-stalking-photo.jpg"
+    ],
+    "alt": "Charcoal drawing of five standing nude figures, and a photograph documenting the drawing left in a public park.",
+    "description": "I placed a drawing in a public park and hid nearby for several hours, waiting to observe any interaction with passersby. After a long wait, someone finally stopped to look at the drawing. He took it, tore it apart, and threw it into the garbage. I felt excited watching this unfold, even though the outcome was not what I had anticipated.",
+    "feature": true
+  },
+  {
+    "id": "mixed-quickness",
+    "title": "Quickness",
+    "category": "mixed",
+    "subgroup": "Process & Performance",
+    "medium": "Stop motion (GIF), paper, pencil, spray",
+    "date": "2025\u20132026, in progress",
+    "images": [
+      "mixed-quickness.jpg"
+    ],
+    "alt": "Grid of stop-motion animation frames showing a running paper figure.",
+    "description": "An ongoing project drawing on Italo Calvino's <em>Six Memos for the Next Millennium</em>. I am currently concluding the chapter on Quickness, exploring how each concept can be articulated through analog stop-motion and examining the workings of the medium itself \u2014 photographing each frame by cellphone and assembling the sequence into a GIF.",
+    "feature": true
+  },
+  {
+    "id": "sketches-grid",
+    "title": "Sketching",
+    "category": "sketches",
+    "medium": "Ink & charcoal",
+    "year": "2025",
+    "images": [
+      "sketches-grid.jpg"
+    ],
+    "alt": "Grid of nine figure studies and portraits in ink and charcoal, mostly from life-drawing sessions.",
+    "description": "Quick studies from life-drawing sessions \u2014 a regular practice that runs alongside the larger finished paintings.",
+    "feature": true
+  }
+]
