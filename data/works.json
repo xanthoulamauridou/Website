@@ -11,15 +11,7 @@
     "images": [
       "oil-statue.jpg"
     ],
-    "alt": "A solitary red-toned nude figure standing in a crimson interior.",
-    "price": {
-      "currency": "€",
-      "material": 50,
-      "labor": 150,
-      "frameMode": "required",
-      "frame": 75,
-      "shipping": 70
-    }
+    "alt": "A solitary red-toned nude figure standing in a crimson interior."
   },
   {
     "id": "oil-enter",
